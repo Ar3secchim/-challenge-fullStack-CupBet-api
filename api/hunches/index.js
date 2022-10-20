@@ -5,7 +5,6 @@ const prisma = new PrismaClient()
 
 export const create = async ctx =>{
   if(!ctx.headers.authorization){
-    console.log("1")
     ctx.status = 401
     return
   }
@@ -17,7 +16,7 @@ export const create = async ctx =>{
 
     if (!ctx.request.body.homeTeamScore && !ctx.request.body.awayTeamScore){
       ctx.status = 400
-      console.log("2")
+
       return
     }
 
@@ -29,7 +28,6 @@ export const create = async ctx =>{
     try{
       const [hunch] = await prisma.hunch.findMany({
         where:{ userId, gameId }
-
       })
 
       ctx.body = hunch

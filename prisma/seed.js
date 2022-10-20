@@ -1,3 +1,5 @@
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 const games =[
   {
@@ -245,12 +247,12 @@ const games =[
 ]
 
 
-function main() {
-  return prisma.game.createMany({
-    data: games
-  })
-}
+const main = () =>
+  prisma.game.createMany({
+      data: games
+})
+
 
 main()
-  .then(console.log)
-  .catch(console.log)
+    .then(console.log)
+    .catch(console.log)
